@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>user List</h1>
+
+    {% if user_list %}
+    <ul>
+
+      {% for user in user_list %}
+      {% if user.status != "verify" %}
+      <li>
+        <a href="{{ user.get_absolute_url }}">{{ user.name }}({{user.id}})</a>
+<form action="/evoterid/view/" method = "post">{% csrf_token %}
+	  <input type="hidden" name="id" value={{user.id}} />
+	  <input type="submit" value="view">
+	</form>
+  
+
+      </li>
+      {% endif %}
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no user registered.</p>
+    {% endif %}
+    <p> Click <a href="/evoterid/getuserinfo/"</a> to add new record. </p>
+{% endblock %}

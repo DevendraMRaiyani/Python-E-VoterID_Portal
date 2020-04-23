@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if form.errors %}
+		<p class="error"> Invalid user info </p>
+	{% endif %}
+
+	<form action="/evoterid/addsugcom/" method = "post">{% csrf_token %}
+		<label for="name">User Name : </label>
+		<input type="text" name = "name" value = "" id="name">
+		<label for="suggestion"> suggestion:</label>
+		<input type="text" name="suggestion" value="" id="suggestion">
+		<input type="submit" value="Enter"/>
+	</form>
+
+{% endblock %}
